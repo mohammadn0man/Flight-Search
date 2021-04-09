@@ -1,15 +1,17 @@
 package org.assignment.model;
 
+import java.util.Date;
+
 public class InputModel {
     private final String departureLocation;
     private final String arrivalLocation;
-    private final String flightDate;
+    private final Date flightDate;
     private final String flightClass;
     private final int outputPreference;
 
     public InputModel(String departureLocation,
                       String arrivalLocation,
-                      String flightDate,
+                      Date flightDate,
                       String flightClass,
                       int outputPreference) {
         this.departureLocation = departureLocation;
@@ -27,7 +29,7 @@ public class InputModel {
         return arrivalLocation;
     }
 
-    public String getFlightDate() {
+    public Date getFlightDate() {
         return flightDate;
     }
 
@@ -37,5 +39,16 @@ public class InputModel {
 
     public int getOutputPreference() {
         return outputPreference;
+    }
+
+    @Override
+    public String toString() {
+        return "InputModel{" +
+                "departureLocation='" + departureLocation + '\'' +
+                ", arrivalLocation='" + arrivalLocation + '\'' +
+                ", flightDate='" + flightDate + '\'' +
+                ", flightClass='" + flightClass + '\'' +
+                ", outputPreference=" + outputPreference +
+                '}';
     }
 }

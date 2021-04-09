@@ -1,10 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Flight Search</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<h1>helo</h1>
+<div class="testbox">
+    <form action="/search" method="post">
+        <div class="banner">
+            <h1>Flight Search</h1>
+        </div>
+        <div class="item">
+            <p>Arrival</p>
+            <input type="text" name="source" required/>
+        </div>
+        <div class="item">
+            <p>Destination</p>
+            <input type="text" name="destination" required/>
+        </div>
+        <div class="item">
+            <p>Date of Travel</p>
+            <input type="date" name="date" required/>
+            <em class="fas fa-calendar-alt"></em>
+        </div>
+        <div class="question">
+            <p>Select Flight Class :</p>
+            <div class="question-answer">
+                <div>
+                    <input type="radio" value="e" id="radio_1" name="flight_class" />
+                    <label for="radio_1" class="radio"><span>Economy</span></label>
+                </div>
+                <div>
+                    <input type="radio" value="b" id="radio_2" name="flight_class" />
+                    <label for="radio_2" class="radio"><span>Business</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <p>Sort by :</p>
+            <div class="question-answer">
+                <div>
+                    <input type="radio" value="1" id="radio_3" name="sort" />
+                    <label for="radio_3" class="radio"><span>Fare</span></label>
+                </div>
+                <div>
+                    <input type="radio" value="2" id="radio_4" name="sort" />
+                    <label for="radio_4" class="radio"><span>Fare and Flight Duration both</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="btn-block">
+            <button type="submit">SUBMIT</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

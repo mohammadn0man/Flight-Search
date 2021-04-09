@@ -2,14 +2,16 @@ package org.assignment.bootstrap;
 
 import org.assignment.exception.FileTypeMismatch;
 import org.assignment.util.CSVUtil;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.concurrent.locks.ReentrantLock;
 
-
-public class DataLoader implements Runnable {
+@Component
+public class DataLoader implements CommandLineRunner {
 
     private static final String FILES_SOURCE_DIRECTORY = "src/res/";
 
@@ -20,6 +22,7 @@ public class DataLoader implements Runnable {
     void startLoading() {
         File file = new File(FILES_SOURCE_DIRECTORY);
         String[] pathsArray = file.list();
+        assert pathsArray != null;
         for (String path : pathsArray) {
             if (!path.contains(".csv")){
                 throw new FileTypeMismatch(path + " is not a csv file");
@@ -31,8 +34,8 @@ public class DataLoader implements Runnable {
     /**
      * listen the same directory for addition of any new file for loading the content into the
      * local flight data records
-     * @throws IOException
-     * @throws InterruptedException
+     * @throws IOException when file is not found
+     * @throws InterruptedException for read interruption
      */
     void loadNewEntry() throws IOException, InterruptedException {
         WatchService watchService = FileSystems.getDefault().newWatchService();
@@ -61,8 +64,9 @@ public class DataLoader implements Runnable {
      * then listen for the any new files addition into the directory
      */
     @Override
-    public void run() {
+    public void run(String... args) {
         try {
+        System.out.println("started run");
             startLoading();
             loadNewEntry();
         } catch (InterruptedException | IOException e) {

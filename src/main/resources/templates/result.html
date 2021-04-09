@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+</head>
+<body>
+<h1>Search result</h1>
+
+<table>
+    <caption>Search result</caption>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Arrival</th>
+        <th scope="col">Flight Time</th>
+        <th scope="col">Flight Duration</th>
+        <th scope="col">Fare</th>
+        <th scope="col">Seat Availability</th>
+        <th scope="col">Class</th>
+    </tr>
+    <tr th:each="result : ${results}">
+        <td th:text="${result.flightNo}">123</td>
+        <td th:text="${result.departureLocation}">Joe</td>
+        <td th:text="${result.arrivalLocation}">Smith</td>
+        <td th:text="${result.flightTime}">00:00</td>
+        <td th:text="${result.flightDuration}">00:00</td>
+        <td th:text="${result.fare}">000</td>
+        <td th:text="${result.seatAvailability}">Y</td>
+        <td th:text="${result.flightClass}">O</td>
+    </tr>
+</table>
+</body>
+</html>
