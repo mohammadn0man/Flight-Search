@@ -29,7 +29,6 @@ public class SearchController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateParsed = formatter.parse(date);
         InputModel input = new InputModel(destination, source, dateParsed, flightClass, sort);
-        System.out.println(input);
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.scan("org.assignment.service");
@@ -37,8 +36,10 @@ public class SearchController {
 
         SearchService searchService = context.getBean(SearchServiceImpl.class);
         List<FlightModel> result = searchService.search(input);
-        System.out.println(result);
         modelMap.put("results", result);
+        modelMap.put("src", source.toUpperCase());
+        modelMap.put("des", destination.toUpperCase());
+        modelMap.put("date", date);
 
         return "result";
     }

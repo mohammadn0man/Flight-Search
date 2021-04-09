@@ -1,22 +1,36 @@
 package org.assignment.model;
 
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "flight_details")
 public class FlightModel {
     @Id
+    @CsvBindByName(column = "FLIGHT_NO")
     private String flightNo;
+    @CsvBindByName(column = "DEP_LOC")
     private String departureLocation;
+    @CsvBindByName(column = "ARR_LOC")
     private String arrivalLocation;
-    private String validTill;
+    @CsvDate(value = "dd-MM-yyyy")
+    @CsvBindByName(column = "VALID_TILL")
+    private Date validTill;
+    @CsvBindByName(column = "FLIGHT_TIME")
     private String flightTime;
+    @CsvBindByName(column = "FLIGHT_DUR")
     private String flightDuration;
+    @CsvBindByName(column = "FARE")
     private String fare;
+    @CsvBindByName(column = "SEAT_AVAILABILITY")
     private String seatAvailability;
+    @CsvBindByName(column = "CLASS")
     private String flightClass;
 
     public void setFlightNo(String flightNo) {
@@ -31,7 +45,7 @@ public class FlightModel {
         this.arrivalLocation = arrivalLocation;
     }
 
-    public void setValidTill(String validTill) {
+    public void setValidTill(Date validTill) {
         this.validTill = validTill;
     }
 
@@ -63,7 +77,7 @@ public class FlightModel {
         return arrivalLocation;
     }
 
-    public String getValidTill() {
+    public Date getValidTill() {
         return validTill;
     }
 

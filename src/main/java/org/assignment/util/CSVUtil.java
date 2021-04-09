@@ -1,18 +1,12 @@
 package org.assignment.util;
 
-import com.opencsv.CSVParserBuilder;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
+import com.opencsv.bean.CsvToBeanBuilder;
 import org.assignment.model.FlightModel;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.io.FileReader;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CSVUtil {
 
@@ -26,30 +20,13 @@ public class CSVUtil {
      */
     public static void read(String filePath) {
         Transaction transaction = null;
-        Map<String, String> mapping = new
-                HashMap<>();
-        mapping.put("FLIGHT_NO", "flightNo");
-        mapping.put("DEP_LOC", "departureLocation");
-        mapping.put("ARR_LOC", "arrivalLocation");
-        mapping.put("VALID_TILL", "validTill");
-        mapping.put("FLIGHT_TIME", "flightTime");
-        mapping.put("FLIGHT_DUR", "flightDuration");
-        mapping.put("FARE", "fare");
-        mapping.put("CLASS", "flightClass");
-        mapping.put("SEAT_AVAILABILITY", "seatAvailability");
-        CsvToBean<FlightModel> csvToBean = new CsvToBean<>();
-        HeaderColumnNameTranslateMappingStrategy<FlightModel> strategy =
-                new HeaderColumnNameTranslateMappingStrategy<>();
-        strategy.setType(FlightModel.class);
-        strategy.setColumnMapping(mapping);
-        try (CSVReader reader = new CSVReaderBuilder(new FileReader(filePath))
-                .withCSVParser(new CSVParserBuilder().withSeparator('|').build())
-                .build();
-             Session session = HibernateUtil.getSessionFactory().openSession()) {
-            @Deprecated
-            List<FlightModel> list = csvToBean.parse(strategy, reader);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<FlightModel> list = new CsvToBeanBuilder(new FileReader(filePath))
+                    .withType(FlightModel.class)
+                    .withSeparator('|')
+                    .build().parse();
             transaction = session.beginTransaction();
-            for (FlightModel model : list){
+            for (FlightModel model : list) {
                 session.save(model);
             }
             transaction.commit();

@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,7 @@ public class SearchServiceImpl implements SearchService {
             query.setParameter("available", "Y");
             query.setParameter("arrival", userInput.getArrivalLocation());
             query.setParameter("departure", userInput.getDepartureLocation());
-            query.setParameter("date", new SimpleDateFormat("dd-MM-yyyy")
-                                        .format(userInput.getFlightDate()));
+            query.setParameter("date", userInput.getFlightDate());
             query.setParameter("class", "%" + userInput.getFlightClass() + "%");
             result = query.list();
         } catch (Exception e) {
