@@ -3,34 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Result</title>
+    <link rel="stylesheet" href="./css/result.css">
 </head>
 <body>
-<h1>Search results</h1>
+<h2>Search results</h2>
 
-<table>
-    <caption>Flights between "<span th:text="${src}"></span>" and "<span th:text="${des}"></span>" on <span th:text="${date}"></span></caption>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Destination</th>
-        <th scope="col">Arrival</th>
-        <th scope="col">Flight Time</th>
-        <th scope="col">Flight Duration</th>
-        <th scope="col">Fare</th>
-        <th scope="col">Seat Availability</th>
-        <th scope="col">Class</th>
-        <th scope="col">Valid Till</th>
-    </tr>
-    <tr th:each="result : ${results}">
-        <td th:text="${result.flightNo}">123</td>
-        <td th:text="${result.departureLocation}">Joe</td>
-        <td th:text="${result.arrivalLocation}">Smith</td>
-        <td th:text="${result.flightTime}">00:00</td>
-        <td th:text="${result.flightDuration}">00:00</td>
-        <td th:text="${result.fare}">000</td>
-        <td th:text="${result.seatAvailability}">Y</td>
-        <td th:text="${result.flightClass}">O</td>
-        <td th:text="${result.validTill}">O</td>
-    </tr>
-</table>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <caption class="text-caption">Flights between "<span th:text="${src}"></span>" and "<span th:text="${des}"></span>" on <span th:text="${date}"></span></caption>
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Arrival</th>
+                <th scope="col">Flight Time</th>
+                <th scope="col">Flight Duration</th>
+                <th scope="col">Fare</th>
+                <th scope="col">Seat Availability</th>
+                <th scope="col">Class</th>
+                <th scope="col">Valid Till</th>
+            </tr>
+        </thead>
+        <tr th:each="result : ${results}">
+            <td th:text="${result.flightNo}">123</td>
+            <td th:text="${result.departureLocation}">Joe</td>
+            <td th:text="${result.arrivalLocation}">Smith</td>
+            <td th:text="${result.flightTime}">00:00</td>
+            <td th:text="${result.flightDuration}">00:00</td>
+            <td th:text="${result.fare}">000</td>
+            <td th:text="${result.seatAvailability}">Y</td>
+            <td th:text="${result.flightClass}">O</td>
+            <td th:text="${result.validTill}">O</td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
