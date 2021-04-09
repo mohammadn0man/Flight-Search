@@ -26,8 +26,15 @@ public class CSVUtil {
                     .withSeparator('|')
                     .build().parse();
             transaction = session.beginTransaction();
+
+
             for (FlightModel model : list) {
-                session.save(model);
+                FlightModel res = (FlightModel) session.createQuery("FROM FlightModel U WHERE U.flightNo = :no")
+                        .setParameter("no", model.getFlightNo())
+                        .uniqueResult();
+                if (res == null) {
+                    session.save(model);
+                }
             }
             transaction.commit();
         } catch (Exception e) {

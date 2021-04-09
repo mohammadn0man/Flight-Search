@@ -6,7 +6,7 @@
         <property name="connection.username">root</property>
         <property name="connection.password">root</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">100</property>
         <!-- Select our SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</property>
         <!-- Echo the SQL to stdout -->
@@ -14,8 +14,9 @@
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
         <!-- dbcp connection pool configuration -->
         <mapping class="org.assignment.model.FlightModel" />
+        <mapping class="org.assignment.model.UserModel" />
     </session-factory>
 </hibernate-configuration>

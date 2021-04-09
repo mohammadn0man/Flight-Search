@@ -7,7 +7,7 @@ import org.assignment.service.SearchServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 public class SearchController {
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public String getResult(@RequestParam("source") String source,
                             @RequestParam("destination") String destination,
                             @RequestParam("date") String date,
